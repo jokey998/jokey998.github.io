@@ -96,28 +96,35 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    function renderTagFilters() {
-        if (!filterTagsContainer) return;
-        
-        filterTagsContainer.innerHTML = '';
-        availableTags.forEach(tag => {
-            const span = document.createElement('span');
-            span.className = 'tag-filter';
-            span.textContent = tag;
-            span.onclick = () => {
-                // Toggle 標籤選取狀態
-                if (activeTags.includes(tag)) {
-                    activeTags = activeTags.filter(t => t !== tag);
-                    span.classList.remove('active');
-                } else {
-                    activeTags.push(tag);
-                    span.classList.add('active');
-                }
-                renderSchedule();
-            };
-            filterTagsContainer.appendChild(span);
-        });
-    }
+function renderTagFilters() {
+    if (!filterTagsContainer) return;
+    
+    filterTagsContainer.innerHTML = '';
+    availableTags.forEach(tag => {
+        const span = document.createElement('span');
+        span.className = 'tag-filter';
+        span.textContent = tag;
+
+        // 🔥 精選推薦：加上特別的 class
+        if (tag === "精選推薦") {
+            span.classList.add('tag-filter-featured');
+        }
+
+        span.onclick = () => {
+            // Toggle 標籤選取狀態
+            if (activeTags.includes(tag)) {
+                activeTags = activeTags.filter(t => t !== tag);
+                span.classList.remove('active');
+            } else {
+                activeTags.push(tag);
+                span.classList.add('active');
+            }
+            renderSchedule();
+        };
+        filterTagsContainer.appendChild(span);
+    });
+}
+
 
     function handleError() {
         if (todayTitle) {
@@ -271,6 +278,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         const tSpan = document.createElement('span');
                         tSpan.className = 'tag-badge';
                         tSpan.textContent = t;
+
+                        // 🔥 精選推薦：加上特別的 class
+                        if (t === "精選推薦") {
+                            tSpan.classList.add('tag-badge-featured');
+                        }
+
                         tagsDiv.appendChild(tSpan);
                     });
                     tdName.appendChild(tagsDiv);
