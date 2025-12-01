@@ -166,11 +166,18 @@ nav a.logo-button {
 }
 
 .nav-logo {
-    height: 46px;                 /* 原本 56 → 縮小 Logo */
+    height: 46px;
     width: auto;
     border-radius: 12px;
     box-shadow: 0 0 18px rgba(0, 0, 0, 0.75);
     display: block;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* 滑鼠移到 logo 時：微放大 + 金色柔光 */
+.nav-logo:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 22px rgba(255, 185, 80, 0.55);
 }
 
 /* 班表高亮按鈕 */
