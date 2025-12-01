@@ -1,0 +1,653 @@
+/* === 0. Reset & 基礎 === */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: '微軟正黑體', 'Microsoft JhengHei', -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+    line-height: 1.7;
+    color: #f5f5f5;
+    /* 背景：上層暗色漸層 + 底層 hero 圖 index1.jpg */
+    background-image:
+        linear-gradient(135deg, rgba(2, 8, 20, 0.96), rgba(14, 32, 52, 0.96)),
+        url("index1.jpg");
+    background-size: cover;
+    background-position: center top;
+    background-attachment: fixed;
+}
+
+/* 讓 body.lounge-background 也吃到同樣風格 */
+body.lounge-background {
+    background-image:
+        linear-gradient(135deg, rgba(2, 8, 20, 0.96), rgba(14, 32, 52, 0.96)),
+        url("index1.jpg");
+}
+
+/* 全站內容最大寬度：接近滿版（桌機大約 1200～1300px） */
+.page-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* === 1. Header & Navigation === */
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    /* 改成：背景圖 index4.jpg + 上方深色漸層，讓字清楚 */
+    background-image:
+        linear-gradient(180deg, rgba(3, 8, 20, 0.2), rgba(3, 8, 20, 0.2)),
+        url("index4.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+header > h1 {
+    margin: 0;
+    /* 縮小標題高度與字體 */
+    padding: 8px 16px 4px 16px;
+    text-align: center;
+    font-size: 1.2rem;           /* 原本 1.4rem → 縮小 */
+    font-weight: 700;
+    letter-spacing: 1.6px;
+    color: #f1c40f; /* 金色標題 */
+    text-shadow: 0 0 6px rgba(0, 0, 0, 0.7);
+}
+
+/* 導覽列：桌機接近滿版排列 */
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;                    /* 稍微縮小間距 */
+    padding: 6px 12px 10px 12px; /* 整體高度變低 */
+    flex-wrap: wrap;
+}
+
+/* 有下拉選單的項目外容器：加 hover 緩衝帶 */
+.nav-item-dropdown {
+    position: relative;
+    padding-bottom: 16px;   /* 增加下方 hover 區域 */
+    margin-bottom: -16px;   /* 抵銷 padding，不影響版面高度 */
+}
+
+/* 🔥 隱形橋樑：滑鼠從按鈕移到選單途中不會中斷 hover */
+.nav-item-dropdown::after {
+    content: "";
+    position: absolute;
+    left: -12px;   /* 左右擴大一點容錯範圍 */
+    right: -12px;
+    top: 100%;     /* 從按鈕底部開始 */
+    height: 24px;  /* 橋樑高度，可視需要改 28px / 30px */
+    background: transparent;
+    z-index: 1;
+}
+
+/* 一般導覽按鈕（縮小版） */
+.nav-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 14px;           /* 原本 8x16 → 稍微縮小 */
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    background: rgba(0, 0, 0, 0.32);  /* 略深一點讓文字浮出背景圖 */
+    color: #e0e4ea;
+    text-decoration: none;
+    font-size: 0.82rem;          /* 字體略小一級 */
+    font-weight: 500;
+    transition: all 0.18s ease;
+}
+
+.nav-btn:hover {
+    background: rgba(255, 255, 255, 0.16);
+    border-color: rgba(255, 255, 255, 0.7);
+    color: #ffffff;
+    transform: translateY(-1px);
+}
+
+/* 下拉內容：改用透明度控制 + 平滑動畫 */
+.dropdown-content {
+    position: absolute;
+    top: 110%;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    min-width: 180px;
+    background: rgba(6, 14, 30, 0.98);
+    border-radius: 14px;
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.55);
+    padding: 6px 0;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s ease;
+}
+
+/* hover 時顯示選單 */
+.nav-item-dropdown:hover .dropdown-content {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 9px 16px;
+    color: #e0e4ea;
+    text-decoration: none;
+    font-size: 0.82rem;
+    white-space: nowrap;
+    transition: background 0.2s ease, padding-left 0.2s ease;
+}
+
+.dropdown-content a:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: #f39c12;
+    padding-left: 22px;
+}
+
+/* Logo */
+nav a.logo-button {
+    padding: 0 8px;
+}
+
+.nav-logo {
+    height: 46px;                 /* 原本 56 → 縮小 Logo */
+    width: auto;
+    border-radius: 12px;
+    box-shadow: 0 0 18px rgba(0, 0, 0, 0.75);
+    display: block;
+}
+
+/* 班表高亮按鈕 */
+.nav-highlight {
+    display: inline-flex;
+    align-items: center;
+    padding: 7px 16px;             /* 稍微縮小 */
+    border-radius: 999px;
+    background: linear-gradient(135deg, #ff9f43, #e67e22);
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.86rem;
+    font-weight: 700;
+    box-shadow: 0 10px 24px rgba(230, 126, 34, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    transition: all 0.22s ease;
+}
+
+.nav-highlight:hover {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 12px 28px rgba(230, 126, 34, 0.75);
+}
+
+/* === 手機漢堡按鈕 & 背景遮罩（桌機預設隱藏） === */
+
+.nav-toggle {
+    display: none; /* 桌機隱藏，手機 media query 再開啟 */
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 6px 9px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    background: rgba(0, 0, 0, 0.45);
+    cursor: pointer;
+    z-index: 120;
+}
+
+.nav-toggle span {
+    display: block;
+    width: 18px;
+    height: 2px;
+    background: #ffffff;
+    margin: 3px 0;
+    border-radius: 999px;
+    transition: transform 0.18s ease, opacity 0.18s ease;
+}
+
+/* 當 nav 打開時，把三條線變成 X */
+body.nav-open .nav-toggle span:nth-child(1) {
+    transform: translateY(5px) rotate(45deg);
+}
+
+body.nav-open .nav-toggle span:nth-child(2) {
+    opacity: 0;
+}
+
+body.nav-open .nav-toggle span:nth-child(3) {
+    transform: translateY(-5px) rotate(-45deg);
+}
+
+/* 背景遮罩 */
+.nav-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 90;
+}
+
+/* 打開選單時顯示遮罩 */
+body.nav-open .nav-backdrop {
+    display: block;
+}
+
+/* === 2. Main Hero 區：接近滿版寬度 === */
+
+main.hero-page {
+    padding: 40px 0 60px 0;
+}
+
+/* 用 page-container 包住，使內容接近整個螢幕寬度 */
+.main-hero-card {
+    margin: 0 auto;
+    max-width: 1220px;      /* 接近滿版 */
+    background: rgba(7, 12, 28, 0.94);
+    border-radius: 24px;
+    padding: 40px 40px 48px 40px;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    box-shadow: 0 22px 40px rgba(0, 0, 0, 0.6);
+}
+
+/* Hero 主標題 */
+.hero-title {
+    text-align: left;
+    font-size: 2.1rem;
+    font-weight: 800;
+    margin: 0 0 12px 0;
+    color: #ffffff;
+    letter-spacing: 1px;
+}
+
+/* Hero 副文案（簡短說明） */
+.hero-text {
+    margin-bottom: 24px;
+    font-size: 1.02rem;
+    color: #e1e4ec;
+}
+
+.hero-text p {
+    margin: 0 0 10px 0;
+}
+
+.hero-text strong {
+    color: #f39c12;
+}
+
+/* === 3. 快速跳轉 + CTA === */
+
+.quick-nav-label {
+    display: block;
+    margin-top: 26px;
+    margin-bottom: 10px;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #9aa4c2;
+}
+
+.quick-links-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 28px;
+}
+
+.quick-link-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 7px 14px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.06);
+    color: #e0e4ea;
+    text-decoration: none;
+    font-size: 0.88rem;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    transition: all 0.2s ease;
+}
+
+.quick-link-pill:hover {
+    background: #e67e22;
+    border-color: #e67e22;
+    color: #ffffff;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 16px rgba(230, 126, 34, 0.5);
+}
+
+.quick-link-pill.hot {
+    background: rgba(255, 149, 0, 0.12);
+    border-color: rgba(255, 149, 0, 0.7);
+    color: #ffb142;
+}
+
+/* CTA 標題 + 按鈕群組 */
+.contact-section-label {
+    display: block;
+    margin-top: 16px;
+    margin-bottom: 12px;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #f1c40f;
+}
+
+.cta-group {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    margin-bottom: 34px;
+}
+
+.brand-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 11px 16px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-size: 0.98rem;
+    font-weight: 700;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.45);
+    transition: all 0.2s ease;
+}
+
+.brand-btn span {
+    font-size: 1.1rem;
+}
+
+/* 按鈕色系 */
+.btn-line { background: #06c755; }
+.btn-line:hover { background: #05b54d; transform: translateY(-2px); }
+
+.btn-tg { background: #0088cc; }
+.btn-tg:hover { background: #0077b3; transform: translateY(-2px); }
+
+.btn-channel {
+    background: linear-gradient(135deg, #8e44ad, #c0392b);
+}
+.btn-channel:hover {
+    filter: brightness(1.08);
+    transform: translateY(-2px);
+}
+
+.btn-phone {
+    background: #2c3e50;
+}
+.btn-phone:hover {
+    background: #1f2a36;
+    transform: translateY(-2px);
+}
+
+/* === 4. 內容區塊（SEO / FAQ）=== */
+
+/* 大區塊：接近滿版、左對齊排版 */
+.seo-content-block {
+    margin-top: 24px;
+    padding: 24px 22px 22px 22px;
+    border-radius: 16px;
+    background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.06), transparent 60%) rgba(10, 16, 38, 0.96);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    color: #dde3f1;
+    text-align: left;
+}
+
+.seo-content-block h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.3rem;
+    color: #ffffff;
+}
+
+.seo-content-block p {
+    margin: 6px 0 10px 0;
+    font-size: 0.98rem;
+}
+
+.seo-info-list {
+    margin: 10px 0 0 0;
+    padding-left: 22px;
+    list-style: disc;
+    font-size: 0.96rem;
+}
+
+/* FAQ 區塊 */
+#faq-section {
+    margin-top: 32px;
+}
+
+#faq-section h2 {
+    font-size: 1.35rem;
+}
+
+.faq-item {
+    margin-top: 14px;
+    padding: 16px 18px;
+    border-radius: 12px;
+    background: rgba(15, 23, 50, 0.96);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.faq-item h3 {
+    margin: 0 0 6px 0;
+    font-size: 1rem;
+    color: #f39c12;
+}
+
+.faq-item p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #dce2f0;
+}
+
+/* === 5. 圖片樣式（如果你在 HTML 裡插入 index2、index3 圖片）=== */
+
+/* Hero 段落可用的圖片（例如放在文案下面） */
+.hero-image {
+    width: 100%;
+    max-width: 1180px;
+    border-radius: 18px;
+    margin: 18px auto 8px auto;
+    display: block;
+    object-fit: cover;
+    box-shadow: 0 18px 32px rgba(0, 0, 0, 0.7);
+}
+
+/* 某些內容段落右側小圖用 */
+.section-image {
+    width: 100%;
+    max-width: 420px;
+    border-radius: 18px;
+    object-fit: cover;
+    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.65);
+    margin-top: 10px;
+}
+
+/* 如果你想把某段文字 + 圖片並排，可以在 HTML 外面包一個 .text-with-image */
+.text-with-image {
+    display: grid;
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+    gap: 22px;
+    align-items: center;
+}
+
+/* === 6. Footer === */
+
+footer {
+    padding: 32px 24px 20px 24px;
+    /* 改成：背景圖 index5.jpg + 下方深色漸層 */
+    background-image:
+        linear-gradient(180deg, rgba(2, 6, 14, 0.2), rgba(2, 6, 14, 0.2)),
+        url("index5.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    margin-top: 30px;
+}
+
+.footer-contact {
+    max-width: 1180px;
+    margin: 0 auto 16px auto;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 14px;
+    backdrop-filter: blur(4px);
+}
+
+.info-item.signature p {
+    margin: 0 0 10px 0;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.contact-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.contact-item {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.7);
+    font-size: 0.9rem;
+}
+
+.contact-item .label {
+    font-weight: 700;
+    margin-right: 6px;
+    color: #f39c12;
+}
+
+.contact-item .value {
+    color: #e0e4ea;
+    text-decoration: none;
+}
+
+.contact-item .value:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+.copyright {
+    max-width: 1180px;
+    margin: 10px auto 0 auto;
+    text-align: center;
+    font-size: 0.82rem;
+    color: #c0c7de;
+}
+
+/* === 7. RWD 手機版 === */
+
+@media (max-width: 768px) {
+
+    header > h1 {
+        font-size: 1rem;
+        padding: 8px 10px 2px 10px;
+    }
+
+    /* 手機：標題上方為 header，nav 變成「收合式」垂直列表 */
+    nav {
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+        padding: 0 12px 8px 12px;
+
+        max-height: 0;              /* 預設收合 */
+        overflow: hidden;
+        opacity: 0;
+        transition: max-height 0.22s ease, opacity 0.18s ease;
+    }
+
+    /* 打開選單：body.nav-open 由 JS 控制 */
+    body.nav-open nav {
+        max-height: 320px;          /* 視選單項目多寡可調 */
+        opacity: 1;
+        margin-top: 4px;
+    }
+
+    /* 手機版顯示漢堡按鈕 */
+    .nav-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* 手機版 nav 按鈕再縮小一點 */
+    .nav-btn {
+        font-size: 0.8rem;
+        padding: 6px 10px;
+        width: 100%;
+        justify-content: flex-start;
+        background: rgba(0, 0, 0, 0.5);
+    }
+
+    .nav-logo {
+        height: 40px;
+    }
+
+    .nav-highlight {
+        font-size: 0.85rem;
+        padding: 7px 14px;
+        width: 100%;
+        justify-content: center;
+    }
+
+    /* 手機上暫時關掉 hover 式下拉（點主項連到對應頁就好） */
+    .dropdown-content {
+        display: none !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+    }
+
+    .main-hero-card {
+        padding: 24px 18px 26px 18px;
+        border-radius: 18px;
+    }
+
+    .hero-title {
+        font-size: 1.5rem;
+    }
+
+    .cta-group {
+        grid-template-columns: 1fr;
+    }
+
+    .text-with-image {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-image {
+        max-width: 100%;
+    }
+
+    footer {
+        padding: 24px 18px 18px 18px;
+    }
+
+    .contact-info {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
