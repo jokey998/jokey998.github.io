@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let activeTags = []; // 已選取的標籤
 
     // 可用的標籤列表 (可從資料自動生成，這裡先列出常用)
-    const availableTags = ["甜美", "可愛", "高挑", "長髮", "短髮", "大奶", "小隻馬", "氣質", "配合度高", "女友感", "服務好"];
+    const availableTags = ["精選推薦", "可愛", "高挑",  "大奶", "小隻馬", "服務好"];
 
     // 初始化頁面
     init();
