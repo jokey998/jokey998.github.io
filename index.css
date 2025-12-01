@@ -567,30 +567,38 @@ footer {
 
 @media (max-width: 768px) {
 
+    /* 標題幫右邊漢堡讓位，不會擠在一起 */
     header > h1 {
-        font-size: 1rem;
-        padding: 8px 10px 2px 10px;
+        font-size: 0.95rem;
+        padding: 8px 52px 4px 12px; /* 右邊多留空間給 nav-toggle */
+        line-height: 1.4;
     }
 
-    /* 手機：標題上方為 header，nav 變成「收合式」垂直列表 */
+    /* 手機：nav 改成收合式直式列表 */
     nav {
         width: 100%;
         flex-direction: column;
-        align-items: flex-start;
-        gap: 4px;
+        align-items: stretch;
+        gap: 6px;
         padding: 0 12px 8px 12px;
 
         max-height: 0;              /* 預設收合 */
         overflow: hidden;
         opacity: 0;
-        transition: max-height 0.22s ease, opacity 0.18s ease;
+        pointer-events: none;
+        transition: max-height 0.25s ease, opacity 0.18s ease;
     }
 
-    /* 打開選單：body.nav-open 由 JS 控制 */
+    /* 打開選單：由 JS 加上 body.nav-open */
     body.nav-open nav {
-        max-height: 320px;          /* 視選單項目多寡可調 */
+        max-height: calc(100vh - 70px);  /* 抓整個螢幕高度，避免被截斷 */
         opacity: 1;
+        pointer-events: auto;
         margin-top: 4px;
+        background: rgba(3, 8, 20, 0.97); /* 展開時給獨立深色底 */
+        border-top: 1px solid rgba(255, 255, 255, 0.16);
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.7);
+        overflow-y: auto;                 /* 選單內容太多可以滑動 */
     }
 
     /* 手機版顯示漢堡按鈕 */
@@ -598,29 +606,62 @@ footer {
         display: inline-flex;
         align-items: center;
         justify-content: center;
+
+        padding: 8px 12px; /* 點擊範圍變大 */
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.65);
+        background: rgba(0, 0, 0, 0.8);    /* 更深，對比高 */
+        box-shadow: 0 0 8px rgba(0,0,0,0.6);
     }
 
-    /* 手機版 nav 按鈕再縮小一點 */
+    .nav-toggle span {
+        width: 22px;          /* 更長 */
+        height: 3px;          /* 更粗 */
+        margin: 3px 0;
+        background: #ffd27f;  /* 接近你的金色系，更醒目 */
+    }
+
+    /* 手機：不需要桌機那種 hover 橋樑，避免怪空隙 */
+    .nav-item-dropdown {
+        padding-bottom: 0;
+        margin-bottom: 0;
+    }
+    .nav-item-dropdown::after {
+        display: none;
+    }
+
+    /* 手機版 nav 按鈕 → 直式列表風格 */
     .nav-btn {
-        font-size: 0.8rem;
-        padding: 6px 10px;
+        font-size: 0.86rem;
+        padding: 8px 12px;
         width: 100%;
         justify-content: flex-start;
-        background: rgba(0, 0, 0, 0.5);
+        background: rgba(0, 0, 0, 0.6);
+        border-radius: 10px;
+        margin-top: 2px;
+    }
+
+    /* 班表按鈕同樣拉滿寬、置中 */
+    .nav-highlight {
+        font-size: 0.9rem;
+        padding: 9px 12px;
+        width: 100%;
+        justify-content: center;
+        margin-top: 4px;
+    }
+
+    /* logo 獨立置中，不會卡在左邊 */
+    nav a.logo-button {
+        align-self: center;
+        margin: 6px 0 4px;
+        padding: 0;
     }
 
     .nav-logo {
         height: 40px;
     }
 
-    .nav-highlight {
-        font-size: 0.85rem;
-        padding: 7px 14px;
-        width: 100%;
-        justify-content: center;
-    }
-
-    /* 手機上暫時關掉 hover 式下拉（點主項連到對應頁就好） */
+    /* 手機上不使用 hover 下拉，直接導到主頁 */
     .dropdown-content {
         display: none !important;
         opacity: 0 !important;
@@ -628,6 +669,7 @@ footer {
         pointer-events: none !important;
     }
 
+    /* 下面是原本內容區 / footer 的手機調整，保留但稍微整理 */
     .main-hero-card {
         padding: 24px 18px 26px 18px;
         border-radius: 18px;
