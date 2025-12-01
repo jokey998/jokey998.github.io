@@ -232,7 +232,7 @@ main {
 }
 
 .main-hero-card {
-    background-color: rgba(255, 255, 255, 0.9); /* 提高不透明度以增加閱讀性 */
+    background-color: rgba(255, 255, 255, 0.93); /* 提高不透明度以增加閱讀性 */
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-radius: 16px;
@@ -263,7 +263,7 @@ main {
 
 /* --- 5. 內頁樣式 (修復部分) --- */
 .content-page {
-    background-color: rgba(255, 255, 255, 0.93); /* 恢復內頁白底背景 */
+    background-color: rgba(255, 255, 255, 0.95); /* 恢復內頁白底背景 */
     padding: 30px;
     border-radius: 12px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
