@@ -742,105 +742,78 @@ footer {
 
 /* --- 🔥 精選推薦 特別樣式 --- */
 
-/* 共用動畫：微微呼吸式的光暈 */
+/* --- 🔥 精選推薦：橘紅 x 深紫 VIP 主題 --- */
 
-
-/* --- 🔥 精選推薦：紫金尊榮 Royal Purple + Gold 主題 --- */
-
-/* 呼吸光暈：紫金呼吸 */
-/* --- 🔥 精選推薦：紫金尊榮 Royal Purple + Gold 主題（新版 無皇冠） --- */
-
-/* 呼吸光暈：紫金光 */
+/* 已選取狀態的發光動畫（深紫光 + 微放大） */
 @keyframes royalGlow {
     0% {
-        box-shadow: 0 0 0px rgba(195, 155, 211, 0.0);
+        box-shadow: 0 0 0px rgba(155, 89, 182, 0.0);
         transform: translateY(0) scale(1.0);
     }
     50% {
-        box-shadow: 0 0 14px rgba(142, 68, 173, 0.95);
+        box-shadow: 0 0 16px rgba(142, 68, 173, 0.95);
         transform: translateY(-2px) scale(1.08);
     }
     100% {
-        box-shadow: 0 0 0px rgba(195, 155, 211, 0.0);
+        box-shadow: 0 0 0px rgba(155, 89, 182, 0.0);
         transform: translateY(0) scale(1.0);
     }
 }
 
-/* 🔸 未選取：紫金低調奢華 */
+/* 💜 精選推薦（未選取狀態） */
+/* 橘色底 + 紅色粗邊 + 粗字 + 淡紫陰影 */
 .tag-filter-featured {
-    border: 2px solid #a569bd;                   /* 金紫邊框 */
-    background: rgba(230, 230, 250, 0.5);        /* 淡紫乳白背景 */
-    color: #6c3483;                               /* 深紫字 */
-    font-weight: 700;
+    border: 2px solid #e53935;            /* 紅色外框，比一般粗 */
+    background: #ffb74d;                  /* 橘色底（偏亮） */
+    color: #b71c1c;                       /* 深紅文字 */
+    font-weight: 700;                     /* 比一般標籤更粗 */
     letter-spacing: 1px;
-    position: relative;
-    padding-left: 28px;
-    padding-right: 18px;
     border-radius: 30px;
-    transition: all 0.22s cubic-bezier(0.25, 0.8, 0.25, 1);
-    box-shadow: 0 2px 4px rgba(142, 68, 173, 0.3);
+    padding: 6px 18px;
+    position: relative;
+    transition: all 0.2s ease;
+    /* 淡紫陰影，做出差異感但不搶爆畫面 */
+    box-shadow: 0 3px 7px rgba(186, 104, 200, 0.45);
 }
 
-/* ☆ 未選取 icon */
-.tag-filter-featured::before {
-    content: "☆";
-    position: absolute;
-    left: 10px;
-    font-size: 1em;
-    color: #a569bd; /* 紫金 */
-}
-
-/* hover：加一點金色光 */
+/* 未選取 hover：顏色再亮一階 + 微微浮起 */
 .tag-filter-featured:hover {
-    background: rgba(210, 180, 222, 0.7);
-    box-shadow: 0 4px 8px rgba(142, 68, 173, 0.45);
-    transform: translateY(-2px) scale(1.05);
+    background: #ffa726;                  /* 稍微更鮮的橘色 */
+    box-shadow: 0 4px 10px rgba(186, 104, 200, 0.6);
+    transform: translateY(-1px) scale(1.04);
 }
 
-/* 👑 已選取：皇家紫 + 金色光暈 + 高級 VIP 質感 */
+/* 🟣 精選推薦（已選取狀態） */
+/* 深紫漸層 + 金色外框 + 放大 + 發光動畫 */
 .tag-filter-featured.active {
     background: linear-gradient(135deg, #8e44ad, #6c3483);
-    color: #f7e6ff;                     /* 柔亮淡紫金字 */
-    border: 2px solid gold;             /* 金色外框 */
+    color: #f8e9ff;
+    border: 2px solid gold;               /* 外框變金色 */
     transform: translateY(-2px) scale(1.12);
-    box-shadow: 0 4px 14px rgba(155, 89, 182, 0.95),
-                0 0 10px gold;
+    box-shadow: 0 4px 16px rgba(142, 68, 173, 0.95),
+                0 0 10px rgba(255, 215, 0, 0.9);
     animation: royalGlow 1.6s infinite ease-in-out;
 }
 
-/* 👑 已選取 icon：皇冠 */
-.tag-filter-featured.active::before {
-    content: "👑";
-    left: 8px;
-    font-size: 1.05em;
-}
-
-/* --- 精選推薦：美容師標籤 (底下的 tag) --- */
+/* 每個美容師底下的「精選推薦」小標籤（維持紫金 VIP 風格） */
 .tag-badge-featured {
     background: linear-gradient(135deg, #8e44ad, #6c3483);
-    color: #f7e6ff;
+    color: #f8e9ff;
     border: 1px solid gold;
     font-weight: 700;
-    position: relative;
-    padding-left: 22px;
     border-radius: 999px;
-    box-shadow: 0 3px 7px rgba(142, 68, 173, 0.6);
+    padding: 4px 12px;
+    box-shadow: 0 3px 7px rgba(142, 68, 173, 0.55);
 }
 
-.tag-badge-featured::before {
-    content: "👑";
-    position: absolute;
-    left: 6px;
-    font-size: 1em;
-}
-
-/* 手機淡化光暈 */
+/* 手機上淡化光暈，避免太刺眼 */
 @media (max-width: 768px) {
     .tag-filter-featured.active {
-        animation-duration: 2.4s;
+        animation-duration: 2.3s;
         box-shadow: 0 4px 10px rgba(142, 68, 173, 0.7);
     }
 }
+
 
 
 
