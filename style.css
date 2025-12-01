@@ -692,59 +692,6 @@ footer {
     }
 }
 /* --- 11. 標籤樣式（篩選 + 美容師標籤）--- */
-
-/* 基本的篩選標籤（上方點選用） */
-.tag-filter {
-    display: inline-flex;
-    align-items: center;
-    padding: 6px 12px;
-    margin: 4px;
-    font-size: 0.9em;
-    border-radius: 999px;
-    border: 1px solid #ddd;
-    background-color: #f7f7f7;
-    color: #555;
-    cursor: pointer;
-    user-select: none;
-    transition: all 0.2s ease;
-}
-
-.tag-filter:hover {
-    background-color: #e67e22;
-    border-color: #e67e22;
-    color: #fff;
-}
-
-.tag-filter.active {
-    background-color: #e67e22;
-    border-color: #e67e22;
-    color: #fff;
-    box-shadow: 0 3px 8px rgba(230, 126, 34, 0.4);
-}
-
-/* 基本的美容師標籤（在名字底下顯示用） */
-.tags-display {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-}
-
-.tag-badge {
-    display: inline-flex;
-    align-items: center;
-    padding: 4px 10px;
-    border-radius: 999px;
-    background-color: #ecf0f1;
-    color: #555;
-    font-size: 0.8em;
-    border: 1px solid #d0d7de;
-}
-
-/* --- 🔥 精選推薦 特別樣式 --- */
-
-/* --- 🔥 精選推薦：橘紅 x 深紫 VIP 主題 --- */
-
-/* 已選取狀態的發光動畫（深紫光 + 微放大） */
 /* --- 11. 標籤樣式（篩選 + 美容師標籤）--- */
 
 /* 基本的篩選標籤（上方點選用） */
@@ -866,4 +813,5 @@ footer {
         box-shadow: 0 4px 10px rgba(142, 68, 173, 0.7);
     }
 }
+
 
