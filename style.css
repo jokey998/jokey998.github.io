@@ -691,3 +691,121 @@ footer {
         font-size: 0.9em;
     }
 }
+/* --- 11. 標籤樣式（篩選 + 美容師標籤）--- */
+
+/* 基本的篩選標籤（上方點選用） */
+.tag-filter {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 12px;
+    margin: 4px;
+    font-size: 0.9em;
+    border-radius: 999px;
+    border: 1px solid #ddd;
+    background-color: #f7f7f7;
+    color: #555;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.2s ease;
+}
+
+.tag-filter:hover {
+    background-color: #e67e22;
+    border-color: #e67e22;
+    color: #fff;
+}
+
+.tag-filter.active {
+    background-color: #e67e22;
+    border-color: #e67e22;
+    color: #fff;
+    box-shadow: 0 3px 8px rgba(230, 126, 34, 0.4);
+}
+
+/* 基本的美容師標籤（在名字底下顯示用） */
+.tags-display {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.tag-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background-color: #ecf0f1;
+    color: #555;
+    font-size: 0.8em;
+    border: 1px solid #d0d7de;
+}
+
+/* --- 🔥 精選推薦 特別樣式 --- */
+
+/* 共用動畫：微微呼吸式的光暈 */
+@keyframes featuredGlow {
+    0% {
+        box-shadow: 0 0 0px rgba(255, 120, 60, 0.0);
+        transform: translateY(0);
+    }
+    50% {
+        box-shadow: 0 0 12px rgba(255, 120, 60, 0.7);
+        transform: translateY(-1px);
+    }
+    100% {
+        box-shadow: 0 0 0px rgba(255, 120, 60, 0.0);
+        transform: translateY(0);
+    }
+}
+
+/* 篩選區的 精選推薦 */
+.tag-filter-featured {
+    border: 0;
+    background: linear-gradient(135deg, #ffb347, #ff5f6d);
+    color: #fff;
+    font-weight: 700;
+    letter-spacing: 1px;
+    position: relative;
+    padding-left: 26px; /* 預留給小 icon */
+    animation: featuredGlow 1.8s infinite ease-in-out;
+}
+
+.tag-filter-featured::before {
+    content: "★";
+    position: absolute;
+    left: 10px;
+    font-size: 0.9em;
+    color: #fffbea;
+}
+
+/* 被點選時讓顏色更深一點 */
+.tag-filter-featured.active,
+.tag-filter-featured:hover {
+    background: linear-gradient(135deg, #ff9f1a, #ff3b30);
+}
+
+/* 每個妹底下的 精選推薦 標籤 */
+.tag-badge-featured {
+    background: linear-gradient(135deg, #ffb347, #ff5f6d);
+    color: #fff;
+    border: none;
+    font-weight: 700;
+    position: relative;
+    padding-left: 22px; /* 預留給 icon */
+    box-shadow: 0 3px 8px rgba(255, 95, 109, 0.6);
+}
+
+.tag-badge-featured::before {
+    content: "🔥";
+    position: absolute;
+    left: 6px;
+    font-size: 0.9em;
+}
+
+/* 手機上讓光暈稍微收斂，避免太亮 */
+@media (max-width: 768px) {
+    .tag-filter-featured {
+        animation-duration: 2.4s;
+        box-shadow: 0 0 6px rgba(255, 120, 60, 0.5);
+    }
+}
