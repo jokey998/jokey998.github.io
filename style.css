@@ -813,5 +813,36 @@ footer {
         box-shadow: 0 4px 10px rgba(142, 68, 173, 0.7);
     }
 }
+/* === 強制覆蓋：精選推薦 標籤樣式（上方篩選用） === */
+/* 未選取：橘色底 + 紅框 + 粗字 */
+.tag-filter.tag-filter-featured {
+    border: 2px solid #e53935 !important;     /* 紅色框，比一般粗 */
+    background-color: #ffb74d !important;     /* 橘色底，只給精選推薦用 */
+    color: #b71c1c !important;                /* 深紅字 */
+    font-weight: 700;
+    letter-spacing: 1px;
+    border-radius: 30px;
+    padding: 6px 18px;
+    box-shadow: 0 3px 7px rgba(186, 104, 200, 0.45);
+}
+
+/* 未選取 hover：橘更亮一階 + 微浮起 */
+.tag-filter.tag-filter-featured:hover {
+    background-color: #ffa726 !important;
+    box-shadow: 0 4px 10px rgba(186, 104, 200, 0.6);
+    transform: translateY(-1px) scale(1.04);
+}
+
+/* 已選取：改成深紫漸層 + 金色外框 + 發光 */
+.tag-filter.tag-filter-featured.active {
+    background: linear-gradient(135deg, #8e44ad, #6c3483) !important;
+    color: #f8e9ff !important;
+    border: 2px solid gold !important;
+    transform: translateY(-2px) scale(1.12);
+    box-shadow: 0 4px 16px rgba(142, 68, 173, 0.95),
+                0 0 10px rgba(255, 215, 0, 0.9);
+    animation: royalGlow 1.6s infinite ease-in-out;
+}
+
 
 
