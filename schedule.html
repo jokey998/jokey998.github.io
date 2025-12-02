@@ -268,8 +268,11 @@
 }
 
 .tag-filter-featured.active {
-    background: linear-gradient(135deg, #ffe082, #ffca28);
-    color: #3e2723;
+    background: linear-gradient(135deg, #a855f7, #facc15); /* 紫金色 */
+    color: #fdf2ff;
+    border-color: rgba(250, 250, 255, 0.9);
+    box-shadow: 0 8px 20px rgba(88, 28, 135, 0.8);
+    animation: featuredBounce 0.8s ease-in-out infinite alternate;
 }
 
 /* 一般小標籤 */
@@ -327,6 +330,17 @@
             from {transform:scale(0)}
             to {transform:scale(1)}
         }
+        @keyframes featuredBounce {
+    0% {
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        transform: translateY(-2px) scale(1.03);
+    }
+    100% {
+        transform: translateY(0) scale(1);
+    }
+}
 
         .close {
             position: absolute;
