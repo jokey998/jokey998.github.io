@@ -598,6 +598,21 @@ footer {
     padding: 6px 10px;
 }
 
+
+.schedule-page {
+    max-width: 1180px;
+    margin: 32px auto 40px auto;
+    padding: 26px 22px 30px 22px;
+    border-radius: 22px;
+    background: radial-gradient(circle at top left,
+                rgba(255, 255, 255, 0.06),
+                transparent 60%)
+                rgba(4, 10, 26, 0.96);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 22px 40px rgba(0, 0, 0, 0.7);
+}
+
+
 @media (max-width: 768px) {
     
 
