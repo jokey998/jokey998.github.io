@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://jokey998.github.io/sitemap.xml
+Host: jokey998.github.io
