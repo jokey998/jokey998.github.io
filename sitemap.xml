@@ -1,60 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
 
-  <!-- 首頁 -->
-  <url>
-    <loc>https://jokey998.github.io/index.html</loc>
-    <lastmod>2025-12-02</lastmod>
-    <priority>1.0</priority>
-  </url>
 
-  <!-- 班表頁 -->
-  <url>
-    <loc>https://jokey998.github.io/schedule.html</loc>
-    <lastmod>2025-12-02</lastmod>
-    <priority>0.9</priority>
-  </url>
+<url>
+  <loc>https://jokey998.github.io/</loc>
+  <lastmod>2025-12-02T14:34:12+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://jokey998.github.io/linsen-massage-guide.html</loc>
+  <lastmod>2025-12-02T14:34:12+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://jokey998.github.io/linsen-north-massage.html</loc>
+  <lastmod>2025-12-02T14:34:12+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://jokey998.github.io/linsen-entertainment-encyclopedia.html</loc>
+  <lastmod>2025-12-02T14:34:12+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://jokey998.github.io/schedule.html</loc>
+  <lastmod>2025-12-02T14:34:12+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://jokey998.github.io/index.html</loc>
+  <lastmod>2025-12-02T14:34:12+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://jokey998.github.io/massage-style-guide.html</loc>
+  <lastmod>2025-12-02T14:34:12+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://jokey998.github.io/zero-three-massage-encyclopedia.html</loc>
+  <lastmod>2025-12-02T14:34:12+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://jokey998.github.io/lymphatic-drainage-massage.html</loc>
+  <lastmod>2025-12-02T14:34:12+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
 
-  <!-- A：林森地區按摩指南 -->
-  <url>
-    <loc>https://jokey998.github.io/linsen-massage-guide.html</loc>
-    <lastmod>2025-12-02</lastmod>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- A1：林森北按摩攻略 -->
-  <url>
-    <loc>https://jokey998.github.io/linsen-north-massage.html</loc>
-    <lastmod>2025-12-02</lastmod>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- A2：林森娛樂與特種文化百科 -->
-  <url>
-    <loc>https://jokey998.github.io/linsen-entertainment-encyclopedia.html</loc>
-    <lastmod>2025-12-02</lastmod>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- B：按摩服務風格與玩法指南 -->
-  <url>
-    <loc>https://jokey998.github.io/massage-style-guide.html</loc>
-    <lastmod>2025-12-02</lastmod>
-    <priority>0.8</priority>
-  </url>
-
-  <!-- B1：零點三按摩百科 -->
-  <url>
-    <loc>https://jokey998.github.io/zero-three-massage-encyclopedia.html</loc>
-    <lastmod>2025-12-02</lastmod>
-    <priority>0.7</priority>
-  </url>
-
-  <!-- B2：淋巴排毒按摩 -->
-  <url>
-    <loc>https://jokey998.github.io/lymphatic-drainage-massage.html</loc>
-    <lastmod>2025-12-02</lastmod>
-    <priority>0.7</priority>
-  </url>
 
 </urlset>
