@@ -261,7 +261,7 @@ function renderTagFilters() {
                 // 加入顯眼的查看心得按鈕
                 nameLink.innerHTML = `
                     <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 5px;">
-                        <span style="font-size: 1.3em; font-weight: bold; color: #ffe082;">${person.name}</span>
+                        <span style="font-size: 1.3em; font-weight: bold; color: #e513c9ff;">${person.name}</span>
                         <span style="font-size: 0.9em; color: white; background: #e91e63; padding: 4px 10px; border-radius: 15px; box-shadow: 0 2px 4px rgba(233, 30, 99, 0.3); display: inline-flex; align-items: center;">
                             👉 查看心得
                         </span>
@@ -308,4 +308,3 @@ function renderTagFilters() {
         }
     }
 });
-
