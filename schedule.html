@@ -4,17 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>班表查詢 | 台北林森會館最新名單 | 台妹半套按摩價格</title>
-    <meta name="description" content="查看波波會館最新班表。台北按摩、紓壓會館首選，提供透明的美容師名單與價格。林森北路五木半套、按摩舒壓、台妹會館即時資訊，看到喜歡立即預約。" />
+    <meta name="description" content="查看台媚十八會館最新班表。台北按摩、紓壓會館首選，提供透明的美容師名單與價格。林森北路五木半套、按摩舒壓、台妹會館即時資訊，看到喜歡立即預約。" />
     <meta name="keywords" content="林森會館,紓壓會館,按摩會館,台妹會館,舒壓按摩,五木半套,台北按摩,半套按摩,半套舒壓,按摩舒壓" />
-    <link rel="canonical" href="https://jokey998.github.io/bobospa/schedule.html" />
-    
+    <link rel="canonical" href="https://jokey998.github.io/schedule.html" />
+
     <!-- Open Graph -->
     <meta property="og:locale" content="zh_TW" />
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="班表查詢 - 波波舒壓會館 | 上班名單" />
+    <meta property="og:title" content="班表查詢 - 台媚十八會館 | 上班名單" />
     <meta property="og:description" content="點擊查看今日及全部上班美容師名單與價格。台北中山區半套舒壓首選。" />
     <meta property="og:image" content="logo.jpg">
-    <meta property="og:url" content="https://jokey998.github.io/bobospa/schedule.html" />
+    <meta property="og:url" content="https://jokey998.github.io/schedule.html" />
+    <meta property="og:site_name" content="台媚十八會館" />
 
     <!-- Schema.org Structural Data -->
     <script type="application/ld+json">
@@ -23,9 +24,10 @@
       "@graph": [
         {
           "@type": "WebPage",
-          "name": "班表查詢 - 波波舒壓會館",
+          "name": "班表查詢 - 台媚十八會館",
           "description": "台北林森北路按摩會館即時班表與價格資訊。",
-          "isPartOf": { "@id": "https://jokey998.github.io/bobospa/#website" }
+          "url": "https://jokey998.github.io/schedule.html",
+          "isPartOf": { "@id": "https://jokey998.github.io/#website" }
         },
         {
           "@type": "BreadcrumbList",
@@ -33,12 +35,12 @@
             "@type": "ListItem",
             "position": 1,
             "name": "首頁",
-            "item": "https://jokey998.github.io/bobospa/index.html"
+            "item": "https://jokey998.github.io/index.html"
           },{
             "@type": "ListItem",
             "position": 2,
             "name": "班表",
-            "item": "https://jokey998.github.io/bobospa/schedule.html"
+            "item": "https://jokey998.github.io/schedule.html"
           }]
         }
       ]
@@ -46,8 +48,7 @@
     </script>
 
     <link rel="stylesheet" href="style.css">
-
-    <!-- Favicon & Icons：跟 index.html 一樣結構 -->
+    <!-- Favicon & Icons：跟新版 index.html 結構一致 -->
     <link rel="icon" href="favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
@@ -260,7 +261,8 @@
 
     <header>
         <h1>台媚十八會館｜台北中山林森北 舒壓按摩與紓壓會館</h1>
-        <!-- 手機漢堡選單按鈕（跟 index.html 相同結構） -->
+
+        <!-- 手機漢堡選單按鈕 -->
         <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-label="切換主選單">
             <span></span>
             <span></span>
@@ -280,6 +282,7 @@
             <!-- 中間：班表（突出） -->
             <a href="schedule.html" class="nav-highlight">📅 班表</a>
 
+            <!-- Logo 文字 → 回首頁 -->
             <a href="index.html" class="nav-btn nav-home">
                 台媚十八會館
             </a>
@@ -295,7 +298,7 @@
         </nav>
     </header>
 
-    <!-- 手機版遮罩：跟 index.html 一樣 -->
+    <!-- 手機版遮罩 -->
     <div class="nav-backdrop" id="nav-backdrop"></div>
 
     <main class="content-page">
@@ -405,7 +408,9 @@
 
 </div>
 
-<!-- 導覽列開關腳本：跟 index.html 一樣 -->
+<script src="script.js"></script>
+
+<!-- 導覽列開關腳本：跟 index.html 一致 -->
 <script>
 document.addEventListener('DOMContentLoaded', function () {
     const toggle = document.getElementById('nav-toggle');
@@ -437,7 +442,7 @@ document.addEventListener('DOMContentLoaded', function () {
         backdrop.addEventListener('click', closeNav);
     }
 
-    /* 手機上點選單項目後順便關門 */
+    // 手機上點選單項目後順便關門
     navLinks.forEach(function (link) {
         link.addEventListener('click', function () {
             if (window.innerWidth <= 768) {
@@ -448,7 +453,6 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 </script>
 
-<script src="script.js"></script>
 <script>
     // 燈箱控制
     const modal = document.getElementById("imageModal");
