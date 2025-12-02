@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
@@ -47,9 +46,14 @@
     </script>
 
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="logo.jpg" type="image/jpeg" sizes="640x640">
-    <link rel="apple-touch-icon" href="logo.jpg">
-    
+
+    <!-- Favicon & Icons：跟 index.html 一樣結構 -->
+    <link rel="icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="shortcut icon" href="favicon.ico">
+
     <style>
         /* 美容師照片樣式 */
         .beautician-img {
@@ -250,48 +254,49 @@
         }
     </style>
 </head>
+
 <body class="lounge-background">
+<div class="page-container">
+
     <header>
-        <h1>波波會館(台北中山林森五木 半套按摩舒壓紓壓)</h1>
+        <h1>台媚十八會館｜台北中山林森北 舒壓按摩與紓壓會館</h1>
+        <!-- 手機漢堡選單按鈕（跟 index.html 相同結構） -->
+        <button class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-label="切換主選單">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
         <nav>
+            <!-- A 群組：左邊 林森相關 -->
             <div class="nav-item-dropdown">
-                <a href="guide.html" class="nav-btn">新手指南 ▾</a>
+                <a href="linsen-massage-guide.html" class="nav-btn">林森地區按摩指南 ▾</a>
                 <div class="dropdown-content">
-                    <a href="guide_terms.html">術語解析</a>
-                    <a href="guide_flow.html">服務流程</a>
-                    <a href="guide_techniques.html">進階技巧</a>
+                    <a href="linsen-north-massage.html">林森北按摩攻略</a>
+                    <a href="linsen-entertainment-encyclopedia.html">林森娛樂與特種文化百科</a>
                 </div>
             </div>
-            <div class="nav-item-dropdown">
-                <a href="faq.html" class="nav-btn">常見問題 ▾</a>
-                <div class="dropdown-content">
-                    <a href="faq_scams.html">防詐騙專區</a>
-                    <a href="faq_safety.html">安全與消費</a>
-                </div>
-            </div>
-            <div class="nav-item-dropdown">
-                <a href="booking.html" class="nav-btn">如何約紅牌 ▾</a>
-                <div class="dropdown-content">
-                    <a href="booking_intro.html">新手入門</a>
-                    <a href="booking_price.html">價格與規則</a>
-                    <a href="booking_tips.html">挑選秘訣</a>
-                </div>
-            </div>
-            <a href="index.html" class="logo-button">
-                <img src="logo.jpg" alt="波波會館 Logo" class="nav-logo">
-            </a>
+
+            <!-- 中間：班表（突出） -->
             <a href="schedule.html" class="nav-highlight">📅 班表</a>
+
+            <a href="index.html" class="nav-btn nav-home">
+                台媚十八會館
+            </a>
+
+            <!-- B 群組：右邊 按摩類型介紹 -->
             <div class="nav-item-dropdown">
-                <a href="about_us.html" class="nav-btn">為何選擇我們 ▾</a>
+                <a href="massage-style-guide.html" class="nav-btn">按摩服務風格與玩法 ▾</a>
                 <div class="dropdown-content">
-                    <a href="about_comparison.html">市場比較</a>
-                    <a href="about_services.html">服務差異</a>
-                    <a href="about_beauticians.html">人員介紹</a>
+                    <a href="zero-three-massage-encyclopedia.html">零點三按摩百科</a>
+                    <a href="lymphatic-drainage-massage.html">淋巴排毒按摩</a>
                 </div>
             </div>
-            <a href="contact.html" class="nav-btn">預約/現場接待</a>
         </nav>
     </header>
+
+    <!-- 手機版遮罩：跟 index.html 一樣 -->
+    <div class="nav-backdrop" id="nav-backdrop"></div>
 
     <main class="content-page">
         <!-- 控制面板 -->
@@ -387,7 +392,7 @@
                 </div>
                 <div class="contact-item">
                     <span class="label">Telegram班表頻道:</span>
-                    <a href="https://t.me/+GlJY15nX6lY3NmJl" target="_blank" class="value">波波會館🇹🇼本土台灣娛樂優選</a>
+                    <a href="https://t.me/+GlJY15nX6lY3NmJl" target="_blank" class="value">台媚十八會館🇹🇼本土台灣娛樂優選</a>
                 </div>
                 <div class="contact-item">
                     <span class="label">電話:</span>
@@ -395,29 +400,75 @@
                 </div>
             </div>
         </div>
-        <p class="copyright">&copy; 2025 波波舒壓會館. 台北中山區五木半套按摩推薦。</p>
+        <p class="copyright">&copy; 2025 台媚十八會館. 台北中山區舒壓按摩與紓壓會館推薦。</p>
     </footer>
 
-    <script src="script.js"></script>
-    <script>
-        // 燈箱控制
-        const modal = document.getElementById("imageModal");
-        const modalImg = document.getElementById("modalImg");
+</div>
 
-        function openModal(src) {
-            modal.style.display = "block";
-            modalImg.src = src;
+<!-- 導覽列開關腳本：跟 index.html 一樣 -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const toggle = document.getElementById('nav-toggle');
+    const backdrop = document.getElementById('nav-backdrop');
+    const navLinks = document.querySelectorAll('nav a');
+
+    if (!toggle) return;
+
+    function closeNav() {
+        document.body.classList.remove('nav-open');
+        toggle.setAttribute('aria-expanded', 'false');
+    }
+
+    function openNav() {
+        document.body.classList.add('nav-open');
+        toggle.setAttribute('aria-expanded', 'true');
+    }
+
+    toggle.addEventListener('click', function () {
+        const isOpen = document.body.classList.contains('nav-open');
+        if (isOpen) {
+            closeNav();
+        } else {
+            openNav();
         }
+    });
 
-        function closeModal() {
-            modal.style.display = "none";
-        }
+    if (backdrop) {
+        backdrop.addEventListener('click', closeNav);
+    }
 
-        modal.onclick = function(event) {
-            if (event.target == modal) {
-                closeModal();
+    /* 手機上點選單項目後順便關門 */
+    navLinks.forEach(function (link) {
+        link.addEventListener('click', function () {
+            if (window.innerWidth <= 768) {
+                closeNav();
             }
+        });
+    });
+});
+</script>
+
+<script src="script.js"></script>
+<script>
+    // 燈箱控制
+    const modal = document.getElementById("imageModal");
+    const modalImg = document.getElementById("modalImg");
+
+    function openModal(src) {
+        modal.style.display = "block";
+        modalImg.src = src;
+    }
+
+    function closeModal() {
+        modal.style.display = "none";
+    }
+
+    modal.onclick = function(event) {
+        if (event.target == modal) {
+            closeModal();
         }
-    </script>
+    }
+</script>
+
 </body>
 </html>

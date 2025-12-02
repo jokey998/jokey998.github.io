@@ -94,9 +94,6 @@ nav {
     background: transparent;
     z-index: 1;
 }
-.nav-home-desktop {
-    display: none;
-}
 
 /* 一般導覽按鈕（縮小版） */
 .nav-btn {
@@ -571,91 +568,59 @@ footer {
 
 /* === 7. RWD 手機版 === */
 
-.nav-home-mobile {
-    display: none;
-}
-/* 首頁按鈕：外觀與 nav-btn 相同，只是顏色特別 */
-.nav-home {
-    color: #f1c40f !important;  /* ✨ 金色文字（你網站主色） */
-    border-color: rgba(255, 215, 120, 0.9) !important;
-    font-weight: 700 !important;
-}
-
-/* hover 時也要有獨立效果（避免變成和其他按鈕一樣） */
-.nav-home:hover {
-    background: rgba(255, 215, 120, 0.15) !important;
-    color: #fff6d1 !important;
-    transform: translateY(-1px);
-}
-
-.nav-logo-text {
-    font-size: 1.25rem;
-    font-weight: 800;
-    color: #ffd27f; /* 金色字體 */
-    text-shadow: 0 0 8px rgba(0,0,0,0.7);
-    letter-spacing: 2px;
-    display: inline-block;
-    padding: 6px 10px;
-}
-
 @media (max-width: 768px) {
-    
 
     /* 標題幫右邊漢堡讓位，不會擠在一起 */
     header > h1 {
         font-size: 0.95rem;
-        padding: 8px 60px 4px 12px; /* 右邊多留空間給 nav-toggle */
+        padding: 8px 52px 4px 12px; /* 右邊多留空間給 nav-toggle */
         line-height: 1.4;
-        text-align: left;
     }
 
-    /* 手機：nav 改成「浮起來的 App 卡片」 */
+    /* 手機：nav 改成收合式直式列表 */
     nav {
-        position: fixed;
-        left: 50%;
-        transform: translateX(-50%);
-        top: 56px;                    /* 大約是 header 高度 */
         width: 100%;
-        max-width: 420px;             /* 中間一塊卡片 */
         flex-direction: column;
         align-items: stretch;
-        gap: 8px;
-        padding: 0 14px 12px 14px;
+        gap: 6px;
+        padding: 0 12px 8px 12px;
 
-        max-height: 0;                /* 預設收合 */
+        max-height: 0;              /* 預設收合 */
         overflow: hidden;
         opacity: 0;
         pointer-events: none;
         transition: max-height 0.25s ease, opacity 0.18s ease;
-        z-index: 110;
     }
 
-    /* nav 展開時：變成一個獨立的深色卡片 */
+    /* 打開選單：由 JS 加上 body.nav-open */
     body.nav-open nav {
-        max-height: calc(100vh - 80px);
+        max-height: calc(100vh - 70px);  /* 抓整個螢幕高度，避免被截斷 */
         opacity: 1;
         pointer-events: auto;
-        margin-top: 6px;
-        background: radial-gradient(circle at top, rgba(255, 255, 255, 0.08), transparent 60%)
-                    rgba(3, 8, 20, 0.98);
-        border-radius: 18px 18px 24px 24px;
-        border: 1px solid rgba(255, 255, 255, 0.18);
-        box-shadow: 0 18px 32px rgba(0, 0, 0, 0.85);
-        overflow-y: auto;
+        margin-top: 4px;
+        background: rgba(3, 8, 20, 0.97); /* 展開時給獨立深色底 */
+        border-top: 1px solid rgba(255, 255, 255, 0.16);
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.7);
+        overflow-y: auto;                 /* 選單內容太多可以滑動 */
     }
 
-    /* 手機版顯示漢堡按鈕（開關位置固定在右上角） */
+    /* 手機版顯示漢堡按鈕 */
     .nav-toggle {
         display: inline-flex;
         align-items: center;
         justify-content: center;
 
-        padding: 7px 14px;
+        position: fixed;          /* 覆蓋外面原本的 absolute */
+        top: 4px;                /* 固定在畫面右上角 */
+        right: 16px;
+        transform: none;          /* 覆蓋掉 translateY(-50%) */
+        z-index: 9999;
+
+        padding: 6px 12px;
         border-radius: 999px;
-        border: 1px solid rgba(255, 215, 120, 0.95);
-        background: radial-gradient(circle at top, rgba(255, 255, 255, 0.12), transparent 60%)
-                    rgba(0, 0, 0, 0.9);
-        box-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+        border: 1px solid rgba(255, 215, 120, 0.9);
+        background: rgba(0, 0, 0, 0.85);
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.7);
     }
 
     /* 手機上不使用三條線，改用字元圖示 */
@@ -663,15 +628,15 @@ footer {
         display: none;
     }
 
-    /* nav 關閉：顯示列表圖示 ≡（比較顯眼） */
+    /* nav 關閉：顯示列表圖示 ≡ */
     .nav-toggle::before {
         content: "≡";
         font-size: 20px;
         line-height: 1;
-        color: #ffd27f;
+        color: #ffd27f;  /* 金黃色，對比高 */
     }
 
-    /* nav 打開：改成關閉圖示 ✕（同一個位置，不再跑掉） */
+    /* nav 打開：改成關閉圖示 ✕ */
     body.nav-open .nav-toggle::before {
         content: "✕";
         font-size: 20px;
@@ -687,64 +652,55 @@ footer {
         display: none;
     }
 
-    /* ✅ 首頁按鈕：手機版第一個、置中 */
-    .nav-home-mobile {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-
-        font-size: 0.92rem;
-        padding: 9px 12px;
-        margin-top: 10px;
-        background: linear-gradient(135deg, #2c3e50, #1f2937);
-        border-radius: 999px;
-        border: 1px solid rgba(255, 255, 255, 0.22);
-        font-weight: 700;
-    }
-
-    /* 手機版 nav 按鈕 → App 列表風格（文字置中） */
+    /* 手機版 nav 按鈕 → 直式列表風格 */
     .nav-btn {
-        font-size: 0.86rem;
-        padding: 9px 12px;
-        width: 100%;
-        justify-content: center;     /* ✅ 文字置中 */
-        text-align: center;
-        background: rgba(0, 0, 0, 0.65);
-        border-radius: 12px;
-        margin-top: 2px;
-        border: 1px solid rgba(255, 255, 255, 0.18);
-    }
+    font-size: 0.86rem;
+    padding: 10px 12px;
+    width: 100%;
+    justify-content: center;    /* ← 置中關鍵 */
+    text-align: center;          /* ← 再加一層置中保險 */
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    margin-top: 2px;
+}
 
-    .nav-btn:hover {
-        background: rgba(255, 255, 255, 0.12);
-        border-color: rgba(255, 255, 255, 0.4);
-        transform: translateY(0);    /* 手機不要往上跑，避免看起來破圖 */
-    }
-
-    /* 班表按鈕：保留特殊感，但也變成列表樣式，文字置中 */
+    /* 班表按鈕同樣拉滿寬、置中 */
     .nav-highlight {
         font-size: 0.9rem;
-        padding: 10px 12px;
+        padding: 9px 12px;
         width: 100%;
         justify-content: center;
-        margin-top: 6px;
-        border-radius: 999px;
-        box-shadow: 0 10px 24px rgba(230, 126, 34, 0.7);
+        text-align: center;
+        margin-top: 4px;
     }
 
-    /* logo 獨立置中，不會卡在側邊 */
+    /* logo 獨立置中，不會卡在左邊 */
     nav a.logo-button {
-        align-self: center;
-        margin: 10px 0 4px;
-        padding: 0;
+        display: none;
     }
 
     .nav-logo {
         height: 40px;
     }
 
-    /* 手機上不使用 hover 下拉，直接點主項就好 */
+    /* 手機版首頁文字按鈕：放在班表上方、樣式接近 nav-btn 但稍微強調 */
+    .nav-home-mobile {
+    display: flex;
+    align-items: center;
+    justify-content: center;     /* ← ← 置中關鍵 */
+    font-size: 0.9rem;
+    padding: 10px 12px;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    border-radius: 10px;
+    margin-top: 8px;
+    font-weight: 700;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    color: #f5f5f5;
+    text-align: center;          /* 加強置中保險 */
+}
+
+    /* 手機上不使用 hover 下拉，直接導到主頁 */
     .dropdown-content {
         display: none !important;
         opacity: 0 !important;
@@ -752,12 +708,7 @@ footer {
         pointer-events: none !important;
     }
 
-    /* 背景遮罩：讓卡片有 App-modal 感覺 */
-    body.nav-open .nav-backdrop {
-        display: block;
-    }
-
-    /* 下面是原本內容區 / footer 的手機調整，保留 */
+    /* 下面是原本內容區 / footer 的手機調整，保留但稍微整理 */
     .main-hero-card {
         padding: 24px 18px 26px 18px;
         border-radius: 18px;
