@@ -14,6 +14,7 @@ body {
     font-family: '微軟正黑體', 'Microsoft JhengHei', -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
     line-height: 1.7;
     color: #f5f5f5;
+    overflow-x: hidden; /* ✅ 防止 full-bleed 造成水平捲軸 */
     /* 背景：上層暗色漸層 + 底層 hero 圖 index1.jpg */
     background-image:
         linear-gradient(135deg, rgba(2, 8, 20, 0.96), rgba(14, 32, 52, 0.96)),
@@ -30,11 +31,11 @@ body.lounge-background {
         url("index1.jpg");
 }
 
-/* 全站內容最大寬度：接近滿版（桌機大約 1200～1300px） */
+/* 全站內容最大寬度：接近滿版（桌機再加寬一點＋少一點 padding） */
 .page-container {
-    max-width: 1280px;
+    max-width: 1360px;  /* ✅ 桌機再寬一點，減少左右空 */
     margin: 0 auto;
-    padding: 0 24px;
+    padding: 0 16px;    /* ✅ 原本 24px → 16px，文字更靠近邊緣 */
 }
 
 /* === 1. Header & Navigation === */
@@ -43,15 +44,27 @@ header {
     position: sticky;
     top: 0;
     z-index: 100;
-    /* 改成：背景圖 index4.jpg + 上方深色漸層，讓字清楚 */
+                   /* ⭐ 新增：讓 ::before 以它為基準 */
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    /* overflow: hidden;  ← ⭐ 這行刪掉，否則會把背景裁掉 */
+}
+
+/* 用偽元素做滿版背景，內容仍然居中 */
+header::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    left: 50%;
+    width: 100vw;
+    margin-left: -50vw;
     background-image:
         linear-gradient(180deg, rgba(3, 8, 20, 0.2), rgba(3, 8, 20, 0.2)),
         url("index4.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    backdrop-filter: blur(14px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    z-index: -1;
 }
 
 header > h1 {
@@ -273,7 +286,7 @@ main.hero-page {
 /* 用 page-container 包住，使內容接近整個螢幕寬度 */
 .main-hero-card {
     margin: 0 auto;
-    max-width: 1220px;      /* 接近滿版 */
+    max-width: 1320px;      /* ✅ 桌機主內容再放寬，左右留白更少 */
     background: rgba(7, 12, 28, 0.94);
     border-radius: 24px;
     padding: 40px 40px 48px 40px;
@@ -517,10 +530,18 @@ footer {
     background-repeat: no-repeat;
     border-top: 1px solid rgba(255, 255, 255, 0.06);
     margin-top: 30px;
+
+    /* ✅ Footer 背景也 full-bleed，從最左到最右 */
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
 }
 
 .footer-contact {
-    max-width: 1180px;
+    max-width: 1320px;  /* 跟 main-hero-card 接近，整體一致 */
     margin: 0 auto 16px auto;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     padding-bottom: 14px;
@@ -566,7 +587,7 @@ footer {
 }
 
 .copyright {
-    max-width: 1180px;
+    max-width: 1320px;
     margin: 10px auto 0 auto;
     text-align: center;
     font-size: 0.82rem;
@@ -602,9 +623,8 @@ footer {
     padding: 6px 10px;
 }
 
-
 .schedule-page {
-    max-width: 1180px;
+    max-width: 1320px;   /* ✅ 跟 main-hero-card 一致 */
     margin: 32px auto 40px auto;
     padding: 26px 22px 30px 22px;
     border-radius: 22px;
@@ -616,9 +636,13 @@ footer {
     box-shadow: 0 22px 40px rgba(0, 0, 0, 0.7);
 }
 
-
 @media (max-width: 768px) {
-    
+
+    /* ✅ 內容容器：手機改成貼滿版 */
+    .page-container {
+        max-width: 100%;
+        padding: 0;          /* 取消左右 24px 大邊距，讓內文更滿版 */
+    }
 
     /* 標題幫右邊漢堡讓位，不會擠在一起 */
     header > h1 {
@@ -776,14 +800,52 @@ footer {
         display: block;
     }
 
-    /* 下面是原本內容區 / footer 的手機調整，保留 */
+    /* ✅ 主內容卡片：貼滿版、內距縮小，文字更寬 */
     .main-hero-card {
-        padding: 24px 18px 26px 18px;
-        border-radius: 18px;
+        max-width: 100%;
+        margin: 12px 0 0 0;          /* 貼滿螢幕左右 */
+        padding: 20px 16px 22px 16px;
+        border-radius: 0;             /* 讓邊緣與螢幕貼齊，有滿版感 */
+        box-shadow: 0 18px 32px rgba(0, 0, 0, 0.7);
     }
 
     .hero-title {
         font-size: 1.5rem;
+    }
+
+    /* ✅ 內文文字區：維持較大寬度 */
+    .hero-text {
+        font-size: 0.98rem;
+    }
+
+    /* ✅ SEO 文字區塊：同樣貼滿版 */
+    .seo-content-block {
+        margin-top: 18px;
+        margin-left: 0;
+        margin-right: 0;
+        padding: 18px 16px 18px 16px;
+        border-radius: 0;
+    }
+
+    .seo-content-block p,
+    .seo-info-list {
+        font-size: 0.96rem;
+    }
+
+    /* ✅ FAQ 卡片也放寬文字寬度 */
+    .faq-item {
+        margin-top: 12px;
+        padding: 14px 16px;
+        border-radius: 0;
+    }
+
+    /* ✅ 班表頁：手機滿版 */
+    .schedule-page {
+        max-width: 100%;
+        margin: 20px 0 30px 0;
+        padding: 20px 16px 24px 16px;
+        border-radius: 0;
+        box-shadow: 0 18px 32px rgba(0, 0, 0, 0.7);
     }
 
     .cta-group {
